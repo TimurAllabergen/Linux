@@ -1,63 +1,65 @@
+# Установка docker
+
 Устанавливает утилиту wget на систему
 
-sudo yum install wget
+    sudo yum install wget
 
 ![image](https://github.com/user-attachments/assets/51f9847e-b526-402e-9f20-92c86183bff1)
 
 
 Скачиваем файл репозитория
 
- sudo wget -P /etc/yum.repos.d/ https://download.docker.com/linux/centos/docker-ce.repo
+     sudo wget -P /etc/yum.repos.d/ https://download.docker.com/linux/centos/docker-ce.repo
 
  ![image](https://github.com/user-attachments/assets/fe8118fd-42c7-4545-adc0-522c5023600a)
 
  Устанавливаем docker
 
- sudo yum install docker-ce docker-ce-cli containerd.io
+     sudo yum install docker-ce docker-ce-cli containerd.io
 
 ![image](https://github.com/user-attachments/assets/66d5dc91-78a6-4f4a-9bbc-593a78d36dac)
 
  Запускаем его и разрешаем автозапуск
 
- sudo systemctl enable docker --now
+     sudo systemctl enable docker --now
 
  ![image](https://github.com/user-attachments/assets/e7bdc86e-a082-4b52-bff3-f6b3f47e2c74)
 
  Для начала нужно убедиться в наличии пакета curl
 
- sudo yum install curl
+     sudo yum install curl
 
 ![image](https://github.com/user-attachments/assets/4b450daf-dfdb-4338-ba8c-16167af80c9b)
 
 Объявление переменной COMVER, полученной в результате curl запроса, хранящей в себе номер последней версии Docker Compose
 
- COMVER=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | grep 'tag_name' | cut -d\" -f4)
+     COMVER=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | grep 'tag_name' | cut -d\" -f4)
 
  Теперь скачиваем скрипт docker-compose последней версии, используя объявленную ранее переменную и помещаем его в каталог /usr/bin
 
- sudo curl -L "https://github.com/docker/compose/releases/download/$COMVER/docker-compose-$(uname -s)-$(uname -m)" -o /usr/bin/docker-compose
+     sudo curl -L "https://github.com/docker/compose/releases/download/$COMVER/docker-compose-$(uname -s)-$(uname -m)" -o /usr/bin/docker-compose
 
 ![image](https://github.com/user-attachments/assets/447cd5c3-5e08-4a59-aa0b-51e957e0182e)
 
 Предоставление прав на выполнение файла docker-compose
 
- sudo chmod +x /usr/bin/docker-compose
+     sudo chmod +x /usr/bin/docker-compose
  
 Проверка установленной версии Docker Compose
 
- sudo docker-compose --version
+     sudo docker-compose --version
 
  ![image](https://github.com/user-attachments/assets/3a89b94d-315d-45b9-9c53-929baf1d2267)
 
  Установка git
 
- sudo yum install git
+     sudo yum install git
 
  ![image](https://github.com/user-attachments/assets/fa9e224e-d496-4c83-b9a9-7f3334872055)
 
  Этот код скачивает содержимое репозитория skl256/grafana_stack_for_docker
 
- sudo git clone https://github.com/skl256/grafana_stack_for_docker.git
+     sudo git clone https://github.com/skl256/grafana_stack_for_docker.git
  
  ![image](https://github.com/user-attachments/assets/71035d42-b6f4-42d9-b12c-5ff009b468fa)
 
@@ -65,11 +67,11 @@ sudo yum install wget
 
 удоляем файл выброном пути 
 
-sudo rm -r grafana_stack_for_docker/grafana.yaml
+    sudo rm -r grafana_stack_for_docker/grafana.yaml
 
 перетаскиваем готовый файл в нужную папку
 
-sudo mv Downloads/docker-compose grafana_stack_for_docker
+    sudo mv Downloads/docker-compose grafana_stack_for_docker
 
 ![image](https://github.com/user-attachments/assets/820cf3e0-75d0-4e57-92a0-e26f7370f08d)
 
@@ -79,7 +81,7 @@ sudo mv Downloads/docker-compose grafana_stack_for_docker
 
 переминование файла 
 
-sudo mv docker-compose docker-compose.yaml
+    sudo mv docker-compose docker-compose.yaml
 
 для проверки
 
@@ -87,34 +89,34 @@ sudo mv docker-compose docker-compose.yaml
 
 Cоздаем папки двумя разными способами
 
- sudo mkdir -p /mnt/common_volume/swarm/grafana/config
+     sudo mkdir -p /mnt/common_volume/swarm/grafana/config
 
- sudo mkdir -p /mnt/common_volume/grafana/{grafana-config,grafana-data,prometheus-data,loki-data,promtail-data}
+     sudo mkdir -p /mnt/common_volume/grafana/{grafana-config,grafana-data,prometheus-data,loki-data,promtail-data}
 
 Выдаем права
 
- sudo chown -R $(id -u):$(id -g) {/mnt/common_volume/swarm/grafana/config,/mnt/common_volume/grafana}
+     sudo chown -R $(id -u):$(id -g) {/mnt/common_volume/swarm/grafana/config,/mnt/common_volume/grafana}
 Создаем файл
 
- sudo touch /mnt/common_volume/grafana/grafana-config/grafana.ini
+     sudo touch /mnt/common_volume/grafana/grafana-config/grafana.ini
 Копирование файлов
 
- sudo cp config/* /mnt/common_volume/swarm/grafana/config/
+     sudo cp config/* /mnt/common_volume/swarm/grafana/config/
 Переименовывание файла
 
- sudo mv grafana.yaml docker-compose.yaml
+     sudo mv grafana.yaml docker-compose.yaml
 
  ![image](https://github.com/user-attachments/assets/5f5ab5a8-c7e5-4cf6-9ba3-aa5278130fb4)
 
  Собрать докер (нужно запускать из папки где docker-compose.yaml)
 
- sudo docker compose up -d
+     sudo docker compose up -d
 
  ![image](https://github.com/user-attachments/assets/4502b944-4382-419b-9d5e-710b0171e730)
 
  остонавлием докер компос так как он не даст редактировать новые данные 
 
-sudo docker compose stop
+    sudo docker compose stop
 
 ![image](https://github.com/user-attachments/assets/f13bb844-c8ba-40b4-ae3d-9926ca215d19)
 
@@ -126,7 +128,7 @@ cd config
 
 Открываем файл prometheus.yaml в текстовом редакторе vi с правами суперпользователя
 
- sudo vi prometheus.yaml
+     sudo vi prometheus.yaml
  
 Далее нужно исправить targets: на exporter:9100
 
@@ -140,11 +142,11 @@ cd config
 
 запускаем докер 
 
-cd
+    cd
 
-cd grafana_stack_for_docker/config
+    cd grafana_stack_for_docker/config
 
- sudo docker compose up -d
+     sudo docker compose up -d
 
 
 
@@ -203,13 +205,13 @@ cd grafana_stack_for_docker/config
 
 Захом в connection там где мы писали http://prometheus:9090 пишем http://victoriametrics:8428 И заменяем имя из "Prometheus-2" в "Vika" нажимаем на dashboards add visualition выбираем "Vika" снизу меняем на "code" Переходим в терминал и пишем
 
- echo -e "# TYPE OILCOINT_metric1 gauge\nOILCOINT_metric1 0" | curl --data-binary @- http://localhost:8428/api/v1/import/prometheus
+     echo -e "# TYPE OILCOINT_metric1 gauge\nOILCOINT_metric1 0" | curl --data-binary @- http://localhost:8428/api/v1/import/prometheus
 
 заменяем нолиек на любые другие цифры  
 
 • команда отправляет бинарные данные (например, метрики в формате Prometheus) на локальный сервер, который слушает на порту 8428.
 
- curl -G 'http://localhost:8428/api/v1/query' --data-urlencode 'query=OILCOINT_metric1'
+     curl -G 'http://localhost:8428/api/v1/query' --data-urlencode 'query=OILCOINT_metric1'
 
  ![image](https://github.com/user-attachments/assets/4724528b-7622-4aec-ab93-a3d988d8c078)
 и так делаем 3 раза 
