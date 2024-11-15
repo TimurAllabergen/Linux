@@ -228,6 +228,40 @@ cd grafana_stack_for_docker/config
 
 ![image](https://github.com/user-attachments/assets/8ac889c8-0ca4-4e80-a46e-ce298f27baf6)
 
+![image](https://github.com/user-attachments/assets/fe25f195-dc81-482b-bb9e-3a4747b8b252)
+
+![image](https://github.com/user-attachments/assets/a37d8e22-252d-48b3-b8e2-59c120ef1439)
+
+![image](https://github.com/user-attachments/assets/20e4310a-b3e3-4f0e-8c48-cf79f06435eb)
+
+![image](https://github.com/user-attachments/assets/2f5b2840-f10c-465d-9125-534b6f72186d)
+
+Копируем переменную OILCOINT_metric1 и вставляем в code
+
+![image](https://github.com/user-attachments/assets/5530ae3e-1d1b-4f06-a78c-aaf7366f8ced)
+
+![image](https://github.com/user-attachments/assets/4f305596-348b-4374-9aae-80cd4da68d83)
+
+![image](https://github.com/user-attachments/assets/aff00bdd-8905-4633-9d2d-4773f38487b3)
+
+![image](https://github.com/user-attachments/assets/7f8774b5-6f14-4833-ba38-127ca22fc1b4)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
