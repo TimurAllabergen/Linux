@@ -110,6 +110,114 @@ Cоздаем папки двумя разными способами
 
  sudo docker compose up -d
 
+ ![image](https://github.com/user-attachments/assets/4502b944-4382-419b-9d5e-710b0171e730)
+
+ остонавлием докер компос так как он не даст редактировать новые данные 
+
+sudo docker compose stop
+
+![image](https://github.com/user-attachments/assets/f13bb844-c8ba-40b4-ae3d-9926ca215d19)
+
+Нужно будет перейти в раздел config
+для этого пишем следующее
+cd grafana_stack_for_docker/config
+если вы уже находитесь в разделе grafana, то напишете следующее
+cd config
+
+Открываем файл prometheus.yaml в текстовом редакторе vi с правами суперпользователя
+
+ sudo vi prometheus.yaml
+ 
+Далее нужно исправить targets: на exporter:9100
+
+ до
+ !![image](https://github.com/user-attachments/assets/14d9dafb-e599-407a-ac76-6fbb4bca92b0)
+
+ после
+ ![image](https://github.com/user-attachments/assets/7fd13d9f-409f-4ad1-870b-a44079ff60be)
+
+чтобы сохранить нажимаем esc :wq!
+
+запускаем докер 
+
+cd
+
+cd grafana_stack_for_docker/config
+
+ sudo docker compose up -d
+
+
+
+
+  переходим на сайт localhost:3000
+
+  ![image](https://github.com/user-attachments/assets/cd15364e-aee3-40f2-9291-2dd3ab8d00d6)
+
+
+            User & Password GRAFANA: admin
+
+            Код графаны: 3000
+
+            Код прометеуса: http://prometheus:9090
+• в меню выбираем вкладку Dashboards и создаем Dashboard
+
+![image](https://github.com/user-attachments/assets/1cf5f05d-19b6-4216-9f04-12fb1bb16fa8)
+
+            ждем кнопку +Add visualization, а после "Configure a new data source"
+
+            выбираем Prometheus
+
+            Connection
+
+            http://prometheus:9090
+
+            ![image](https://github.com/user-attachments/assets/b995c811-d89d-4596-919d-373ad26f97b8)
+
+• Authentication
+
+![image](https://github.com/user-attachments/assets/6f070cd6-18d7-40b7-8f4a-fdcd7626bf04)
+
+            Basic authentication
+
+            User: admin
+
+            Password: admin
+
+            Нажимаем на Save & test и должно показывать зелёную галочку
+            
+• в меню выбираем вкладку Dashboards и создаем Dashboard
+
+![image](https://github.com/user-attachments/assets/b986976d-209e-4c1f-9c95-9dd80ae58287)
+
+            ждем кнопку "Import dashboard"
+
+![image](https://github.com/user-attachments/assets/83d5a311-596e-4f12-a441-9ec60fdb3d55)
+
+            Find and import dashboards for common applications at grafana.com/dashboards: 1860 //ждем кнопку Load
+
+![image](https://github.com/user-attachments/assets/99d8d98c-efd5-4e30-ad87-eaec3ed63186)
+
+            Select Prometheus ждем кнопку "Import"
+
+![image](https://github.com/user-attachments/assets/fb04bebd-fc6e-45f7-a54f-a43801fd0b2e)
+
+            
+
+
+
+
+
+
+
+
+ 
+
+ 
+ 
+
+
+ 
+
  
 
 
