@@ -61,6 +61,62 @@ sudo yum install wget
  
  ![image](https://github.com/user-attachments/assets/71035d42-b6f4-42d9-b12c-5ff009b468fa)
 
+чтобы долго ненажимать дилит а сделать всегго парочку косанд для этого нужно 
+
+удоляем файл выброном пути 
+
+sudo rm -r grafana_stack_for_docker/grafana.yaml
+
+перетаскиваем готовый файл в нужную папку
+
+sudo mv Downloads/docker-compose grafana_stack_for_docker
+
+![image](https://github.com/user-attachments/assets/820cf3e0-75d0-4e57-92a0-e26f7370f08d)
+
+для проверки сделать 
+
+![image](https://github.com/user-attachments/assets/54344721-3e89-46d5-ac51-dbcd9d4f0444)
+
+переминование файла 
+
+sudo mv docker-compose docker-compose.yaml
+
+для проверки
+
+![image](https://github.com/user-attachments/assets/8015680e-96d5-4555-95ec-1b58124ead04)
+
+Cоздаем папки двумя разными способами
+
+ sudo mkdir -p /mnt/common_volume/swarm/grafana/config
+
+ sudo mkdir -p /mnt/common_volume/grafana/{grafana-config,grafana-data,prometheus-data,loki-data,promtail-data}
+
+Выдаем права
+
+ sudo chown -R $(id -u):$(id -g) {/mnt/common_volume/swarm/grafana/config,/mnt/common_volume/grafana}
+Создаем файл
+
+ sudo touch /mnt/common_volume/grafana/grafana-config/grafana.ini
+Копирование файлов
+
+ sudo cp config/* /mnt/common_volume/swarm/grafana/config/
+Переименовывание файла
+
+ sudo mv grafana.yaml docker-compose.yaml
+
+ ![image](https://github.com/user-attachments/assets/5f5ab5a8-c7e5-4cf6-9ba3-aa5278130fb4)
+
+ Собрать докер (нужно запускать из папки где docker-compose.yaml)
+
+ sudo docker compose up -d
+
+ 
+
+
+
+
+
+
 
 
 
