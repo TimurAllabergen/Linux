@@ -201,6 +201,39 @@ cd grafana_stack_for_docker/config
 
 ![image](https://github.com/user-attachments/assets/fb04bebd-fc6e-45f7-a54f-a43801fd0b2e)
 
+Захом в connection там где мы писали http://prometheus:9090 пишем http://victoriametrics:8428 И заменяем имя из "Prometheus-2" в "Vika" нажимаем на dashboards add visualition выбираем "Vika" снизу меняем на "code" Переходим в терминал и пишем
+
+ echo -e "# TYPE OILCOINT_metric1 gauge\nOILCOINT_metric1 0" | curl --data-binary @- http://localhost:8428/api/v1/import/prometheus
+
+заменяем нолиек на любые другие цифры  
+
+• команда отправляет бинарные данные (например, метрики в формате Prometheus) на локальный сервер, который слушает на порту 8428.
+
+ curl -G 'http://localhost:8428/api/v1/query' --data-urlencode 'query=OILCOINT_metric1'
+
+ ![image](https://github.com/user-attachments/assets/4724528b-7622-4aec-ab93-a3d988d8c078)
+и так делаем 3 раза 
+
+тепреь вписываеи в строку http://localhost:8428
+
+выводит 
+
+![image](https://github.com/user-attachments/assets/7b0b282f-f1bc-4b04-84ab-923a9f483676)
+
+нажимаем vmui
+
+Копируем переменную OILCOINT_metric1 и вставляем в query
+
+Нажимаем run
+
+![image](https://github.com/user-attachments/assets/8ac889c8-0ca4-4e80-a46e-ce298f27baf6)
+
+
+
+
+
+
+
             
 
 
